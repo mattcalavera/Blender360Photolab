@@ -62,18 +62,40 @@ Blender360Photolab uses Blender as a flexible photographic workspace where a 360
 This makes it possible to use Blender not only for 3D scenes, but also as a practical laboratory for 360° photography.
 
 ---
-
 ## Installation
 
-1. Download the latest release ZIP from the **Releases** section.
+Blender360Photolab can be installed as a standard Blender add-on.
+
+### Option 1 — Install the single Python file
+
+Use this method if the release provides a single `.py` file.
+
+1. Download `blender360photolab.py` from the latest release.
 2. Open Blender.
 3. Go to:
 
    `Edit > Preferences > Add-ons`
 
-4. Click **Install**.
-5. Select the downloaded ZIP file.
+4. Click **Install from Disk**.
+5. Select `blender360photolab.py`.
 6. Enable **Blender360Photolab** in the add-ons list.
+
+### Option 2 — Install the ZIP package
+
+Use this method if the release provides an installable ZIP package.
+
+1. Download `Blender360Photolab.zip` from the latest release.
+2. Open Blender.
+3. Go to:
+
+   `Edit > Preferences > Add-ons`
+
+4. Click **Install from Disk**.
+5. Select `Blender360Photolab.zip`.
+6. Enable **Blender360Photolab** in the add-ons list.
+
+Do not use GitHub's automatically generated “Source code ZIP” unless it is explicitly marked as installable.
+Use the ZIP file attached to the release.
 
 After enabling the add-on, the Blender360Photolab panel will be available inside Blender.
 
