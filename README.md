@@ -342,38 +342,6 @@ Blender360Photolab is released under:
 GPL-3.0-or-later
 ```
 
----
-
-## Suggested repository description
-
-```text
-Blender add-on for reframing equirectangular 360° still photos into rectilinear or cylindrical printable images, with LUT support, previews and PNG/TIFF/JPEG export.
-```
-
----
-
-## Suggested GitHub topics
-
-```text
-blender
-blender-addon
-blender-extension
-python
-360-photo
-equirectangular
-panorama
-reframe
-rectilinear
-cylindrical-projection
-photography
-drone-photography
-lut
-color-grading
-image-processing
-```
-
----
-
 ## Short community post
 
 Blender360Photolab is a beta Blender add-on for reframing equirectangular 360° still photos into conventional photographic exports.
