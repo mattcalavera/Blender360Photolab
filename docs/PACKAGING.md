@@ -21,7 +21,7 @@ Edit > Preferences > Add-ons > Install from Disk
 Release asset:
 
 ```text
-blender360photolab-v0.29.0-beta.py
+Blender360Photolab-v0.35.0-beta-extension.zip
 ```
 
 Recommended public instruction:
@@ -39,7 +39,7 @@ A ZIP release should be provided only if it is tested as installable in Blender.
 Recommended ZIP asset name:
 
 ```text
-Blender360Photolab-v0.29.0-beta-installable.zip
+Blender360Photolab-v0.35.0-beta-extension.zip
 ```
 
 Do not assume that GitHub's automatically generated source-code ZIP is suitable for Blender add-on installation.
@@ -48,25 +48,12 @@ Do not assume that GitHub's automatically generated source-code ZIP is suitable 
 
 ## Recommended Release Assets
 
-For `v0.29.0-beta`:
+For `v0.35.0-beta`:
 
 ```text
-blender360photolab-v0.29.0-beta.py
-Blender360Photolab-v0.29.0-beta-installable.zip
+Blender360Photolab-v0.35.0-beta-extension.zip
 ```
 
 The ZIP should be tested before publication.
 
 ---
-
-## Pre-Release Checks
-
-Before publishing a release:
-
-- install the add-on from a clean Blender session;
-- enable the add-on;
-- load a test equirectangular image;
-- generate previews;
-- export PNG;
-- disable the add-on;
-- restart Blender and verify that no startup error appears.
