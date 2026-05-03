@@ -35,7 +35,7 @@ This is the recommended method for the first beta release if the add-on is still
 Use this method only if the release provides an explicitly installable ZIP package, for example:
 
 ```text
-Blender360Photolab-v0.29.0-beta.zip
+Blender360Photolab-v0.35.0-beta-extension.zip
 ```
 
 Steps:
