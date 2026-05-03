@@ -1,0 +1,10 @@
+blender
+blender-addon
+360-photo
+equirectangular
+panorama
+photography
+reframing
+rectilinear
+cylindrical-projection
+python
