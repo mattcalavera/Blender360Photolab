@@ -6,7 +6,7 @@ It is designed for drone, panoramic and 360° photo workflows where you want to 
 
 > **Status:** beta. The add-on is usable, but the interface and internal projection tools are still evolving.
 
-![Blender360Photolab camera workflow](docs/images/Main-camera-view.png)
+![Blender360Photolab camera workflow](/images/Main-camera-view.png)
 
 ---
 
