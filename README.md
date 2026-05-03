@@ -44,6 +44,21 @@ It is designed for drone, panoramic and 360° photo workflows where you want to 
 - Horizontal seam handling at **±180°** to avoid out-of-bounds sampling on the equirectangular image seam.
 - Runtime cache for source image and LUT data to reduce repeated loading.
 
+## Screenshots
+
+### Camera-based reframing workflow
+
+![Camera View workflow](/images/Main-camera-view.png)
+
+### Comparative preview layout
+
+![Projection comparison](/images/projection-preview-layout.png)
+
+### Export and print-oriented tools
+
+![Export tools](/images/addon-panel_1.png)
+![Export tools](/images/addon-panel_2.png)
+
 ---
 
 ## What it is for
