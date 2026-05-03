@@ -1,21 +1,22 @@
 # Blender360Photolab
-# Public release: v0.33.0-beta
+# Public release: v0.34.0-beta
 # SPDX-License-Identifier: GPL-3.0-or-later
 #
 # Based on internal script: reframe360_v033_complete.py
 
 # ============================================================
-# VERSIONE: 033 | 2026-05-03 09:49 (Europe/Rome)
+# VERSIONE: 034 | 2026-05-03 11:27 (Europe/Rome)
 # MODIFICA:
-# - Baseline V032 mantenuta: caricamento in Rendered + Camera View, anteprime in ortografica senza riquadro camera.
-# - Corretto errore export/preview al bordo orizzontale dell'equirettangolare: indice X uguale alla larghezza sorgente.
-# - Bilinear sampler reso robusto su seam ±180°, NaN/Inf e limiti pixel.
+# - Baseline V034 mantenuta.
+# - Fix installazione come add-on da Preferences/Install from Disk in Blender 4.2+ e 5.x.
+# - Rimosso l'accesso a bpy.data.objects/materials/images da register(), perché in fase di enable Blender usa _RestrictData.
+# - La pulizia degli artefatti resta disponibile nelle operazioni normali, ma non viene più eseguita durante la registrazione dell'add-on.
 # ============================================================
 
 bl_info = {
-    "name": "Blender360Photolab V033",
+    "name": "Blender360Photolab V034",
     "author": "Mattia Fiorini",
-    "version": (3, 3, 0),
+    "version": (3, 4, 0),
     "blender": (3, 6, 0),
     "location": "View3D > Sidebar > Foto 360",
     "description": "Reframe equirectangular 360 photos with camera view, CIL/CLV previews, rectilinear output, LUT and PNG/TIFF/JPEG export",
@@ -34,13 +35,13 @@ from bpy.types import Operator, Panel
 from bpy_extras.io_utils import ImportHelper, ExportHelper
 
 
-CAMERA_NAME = "Reframe360_Camera_V033"
-WORLD_NAME = "Reframe360_World_V033"
-PREVIEW_CAMERA_NAME = "Reframe360_Preview_Camera_V033"
-PREVIEW_COLLECTION_NAME = "Reframe360_Preview_V033"
-CIL_GUIDE_OBJECT_NAME = "Reframe360_CIL_Guide_Rect_V033"
-CIL_GUIDE_LABEL_NAME = "Reframe360_CIL_Guide_Label_V033"
-CIL_GUIDE_MATERIAL_NAME = "Reframe360_CIL_Guide_Mat_V033"
+CAMERA_NAME = "Reframe360_Camera_V034"
+WORLD_NAME = "Reframe360_World_V034"
+PREVIEW_CAMERA_NAME = "Reframe360_Preview_Camera_V034"
+PREVIEW_COLLECTION_NAME = "Reframe360_Preview_V034"
+CIL_GUIDE_OBJECT_NAME = "Reframe360_CIL_Guide_Rect_V034"
+CIL_GUIDE_LABEL_NAME = "Reframe360_CIL_Guide_Label_V034"
+CIL_GUIDE_MATERIAL_NAME = "Reframe360_CIL_Guide_Mat_V034"
 
 # Cache runtime: evita di rileggere foto e LUT a ogni preview/export.
 _SOURCE_ARRAY_CACHE = {}
@@ -423,7 +424,7 @@ def update_camera(scene):
     pitch = math.radians(scene.reframe360v33_pitch)
     roll = math.radians(scene.reframe360v33_roll)
 
-    # V033: la Camera View deve restare stabile quando si cambia RET/CIL/CLV.
+    # V034: la Camera View deve restare stabile quando si cambia RET/CIL/CLV.
     # In V027 la CLV azzerava il pitch della camera e usava shift_y: questo faceva
     # saltare visibilmente l'inquadratura passando da CIL a CLV. Ora la camera
     # mantiene sempre lo stesso asse ottico; la differenza CLV resta solo nella
@@ -480,7 +481,7 @@ def setup_world_image(scene, filepath):
     nodes.clear()
 
     env = nodes.new(type="ShaderNodeTexEnvironment")
-    env.name = "Foto 360 Equirettangolare V033"
+    env.name = "Foto 360 Equirettangolare V034"
     env.image = img
 
     try:
@@ -593,7 +594,7 @@ def build_cilindrical_boundary_points_for_camera(scene, cam):
     """
     Disegna il bordo CIL/CLV nello stesso piano della camera.
 
-    V033: il calcolo usa il centro reale del frame camera restituito da Blender.
+    V034: il calcolo usa il centro reale del frame camera restituito da Blender.
     La Camera View non usa più shift_y in CLV: il bordo viene quindi ridisegnato
     senza spostare il centro dell'inquadratura.
     """
@@ -1144,7 +1145,7 @@ def write_tiff_rgb16_uncompressed(filepath, rgba, np, dpi=300):
     bits_offset = add_extra(struct.pack("<HHH", 16, 16, 16))
     xres_offset = add_extra(struct.pack("<II", int(dpi), 1))
     yres_offset = add_extra(struct.pack("<II", int(dpi), 1))
-    software = b"Reframe360 V033\x00"
+    software = b"Reframe360 V034\x00"
     software_offset = add_extra(software)
     sample_format_offset = add_extra(struct.pack("<HHH", 1, 1, 1))
     pixel_offset = data_offset
@@ -1192,7 +1193,7 @@ def write_jpeg_via_blender(filepath, rgba, np, quality=95):
     validate_rgba_array(rgba)
     h, w, _ = rgba.shape
 
-    img = bpy.data.images.new("Reframe360_Output_JPEG_TEMP_V033", width=w, height=h, alpha=True, float_buffer=False)
+    img = bpy.data.images.new("Reframe360_Output_JPEG_TEMP_V034", width=w, height=h, alpha=True, float_buffer=False)
 
     old_settings = None
     scene = bpy.context.scene
@@ -1712,7 +1713,7 @@ def estimate_source_density_resolution(scene):
     """
     Stima la massima risoluzione nativa utile per la stampa della specifica inquadratura.
 
-    Metodo V033: campiona il quadro corrente, lo rimappa sulla foto equirettangolare,
+    Metodo V034: campiona il quadro corrente, lo rimappa sulla foto equirettangolare,
     misura l'impronta complessiva in pixel sorgente e poi rispetta il rapporto larghezza/altezza
     scelto per l'export. Non usa più il percentile prudenziale della versione precedente.
     """
@@ -2417,7 +2418,7 @@ class REFRAME360_OT_render_save(Operator, ExportHelper):
 # ============================================================
 
 class REFRAME360_PT_panel(Panel):
-    bl_label = "Blender360Photolab V033"
+    bl_label = "Blender360Photolab V034"
     bl_idname = "REFRAME360_PT_panel"
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
@@ -2735,7 +2736,12 @@ def register_props():
 
 def register():
     unregister_old_classes_and_props()
-    cleanup_old_visual_artifacts()
+
+    # V034: non chiamare cleanup_old_visual_artifacts() durante register().
+    # Quando Blender abilita un add-on da Preferences usa _RestrictData:
+    # in quella fase bpy.data.objects/materials/images non è accessibile.
+    # La pulizia degli artefatti viene eseguita dalle operazioni normali
+    # dell'add-on, quando il contesto Blender è pienamente disponibile.
 
     for cls in classes:
         bpy.utils.register_class(cls)
