@@ -1,1 +1,1 @@
-A Blender add-on for reframing equirectangular 360° photos, generating cylindrical previews and exporting rectilinear views.
+Add-on for Blender to reframe equirectangular 360° photos with RET/CIL/CLV previews, LUT support and PNG/TIFF/JPEG export.

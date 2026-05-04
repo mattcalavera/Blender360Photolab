@@ -1,10 +1,1 @@
-blender
-blender-addon
-360-photo
-equirectangular
-panorama
-photography
-reframing
-rectilinear
-cylindrical-projection
-python
+blender blender-addon blender-extension python 360-photo equirectangular panorama photography reframing rectilinear cylindrical-projection drone-photography lut
