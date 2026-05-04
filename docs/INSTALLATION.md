@@ -1,56 +1,67 @@
 # Installation Guide
 
-Blender360Photolab can be installed as a standard Blender add-on.
+360 PhotoLab can be installed as a Blender extension package.
 
-There are two possible installation methods, depending on how the release is packaged.
-
----
-
-## Option 1 — Install the Single Python File
-
-Use this method if the release provides a single file such as:
-
-```text
-blender360photolab.py
-```
-
-Steps:
-
-1. Download `blender360photolab.py` from the latest GitHub release.
-2. Open Blender.
-3. Go to:
-
-   `Edit > Preferences > Add-ons`
-
-4. Click **Install from Disk**.
-5. Select `blender360photolab.py`.
-6. Enable **Blender360Photolab** in the add-ons list.
-
-This is the recommended method for the first beta release if the add-on is still distributed as a single Python file.
+For Blender 4.2+ and 5.x, use the extension ZIP attached to a GitHub release.
 
 ---
 
-## Option 2 — Install an Add-on ZIP Package
+## Recommended method — install the extension ZIP
 
-Use this method only if the release provides an explicitly installable ZIP package, for example:
+Use this method for public releases.
+
+Download the asset named like:
 
 ```text
-Blender360Photolab-v0.35.0-beta-extension.zip
+360PhotoLab-v0.36.0-beta-extension.zip
 ```
 
-Steps:
+Then install it in Blender:
 
-1. Download the ZIP file from the GitHub release assets.
-2. Open Blender.
-3. Go to:
+1. Open Blender.
+2. Go to:
 
-   `Edit > Preferences > Add-ons`
+   ```text
+   Edit > Preferences > Extensions
+   ```
 
-4. Click **Install from Disk**.
-5. Select the ZIP file.
-6. Enable **Blender360Photolab** in the add-ons list.
+3. Choose the option to install an extension from a local ZIP file.
+4. Select the downloaded release asset ZIP.
+5. Enable **360 PhotoLab**.
+6. Open the 3D View sidebar and look for the **360 PhotoLab** tab.
 
-Important: do not use GitHub's automatically generated “Source code ZIP” unless it is explicitly marked as installable.
+---
+
+## Important: do not use GitHub source archives
+
+Do not install GitHub's automatically generated archives:
+
+```text
+Source code (zip)
+Source code (tar.gz)
+```
+
+Those files are repository archives. They are not guaranteed to have the extension package structure expected by Blender.
+
+Use only the ZIP file attached as a release asset.
+
+---
+
+## Expected extension ZIP structure
+
+The installable ZIP should contain:
+
+```text
+__init__.py
+blender_manifest.toml
+```
+
+The manifest should identify the extension as:
+
+```toml
+id = "photo360_lab"
+name = "360 PhotoLab"
+```
 
 ---
 
@@ -58,8 +69,8 @@ Important: do not use GitHub's automatically generated “Source code ZIP” unl
 
 If the add-on does not appear after installation:
 
-- check that you downloaded the correct file from the release assets;
+- check that you downloaded the correct ZIP from the release assets;
+- check that the ZIP contains `blender_manifest.toml`;
 - restart Blender;
 - open the system console and check for Python errors;
-- verify that the file contains valid Blender add-on metadata;
 - report the issue on GitHub with Blender version, operating system and screenshots.

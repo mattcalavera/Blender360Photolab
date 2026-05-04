@@ -1,59 +1,110 @@
 # Packaging Notes
 
-This document explains how to prepare Blender360Photolab for GitHub releases.
+This document explains how to prepare **360 PhotoLab** for GitHub releases and Blender Extensions submission.
 
 ---
 
-## Single-File Beta Release
+## Public name and technical ID
 
-For the first beta release, the simplest and safest distribution method is a single Python file:
-
-```text
-blender360photolab.py
-```
-
-This file can be installed directly from Blender:
+Public extension name:
 
 ```text
-Edit > Preferences > Add-ons > Install from Disk
+360 PhotoLab
 ```
 
-Release asset:
+Technical manifest ID:
 
 ```text
-Blender360Photolab-v0.35.0-beta-extension.zip
+photo360_lab
 ```
 
-Recommended public instruction:
-
-```text
-Download the .py file from the release assets and install it from Blender Preferences.
-```
+The public name avoids using the Blender trademark as part of the product name. The word Blender may still be used descriptively, for example “an add-on for Blender”.
 
 ---
 
-## ZIP Release
+## Extension manifest
 
-A ZIP release should be provided only if it is tested as installable in Blender.
+The release ZIP must include `blender_manifest.toml`.
 
-Recommended ZIP asset name:
+Recommended manifest:
 
-```text
-Blender360Photolab-v0.35.0-beta-extension.zip
+```toml
+schema_version = "1.0.0"
+
+id = "photo360_lab"
+version = "0.36.0"
+name = "360 PhotoLab"
+tagline = "Reframe equirectangular 360 photos with RET CIL and CLV previews"
+maintainer = "Mattia Fiorini <https://github.com/mattcalavera>"
+type = "add-on"
+
+website = "https://github.com/mattcalavera/360PhotoLab"
+tags = ["Camera", "Import-Export"]
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
+
+[permissions]
+files = "Load local 360 images and LUT files and export images"
 ```
 
-Do not assume that GitHub's automatically generated source-code ZIP is suitable for Blender add-on installation.
+Notes:
+
+- The permission reason must not end with punctuation.
+- Tags must be supported Blender Extensions add-on tags.
+- Do not use unsupported tags such as `Image`.
 
 ---
 
-## Recommended Release Assets
+## Extension ZIP structure
 
-For `v0.35.0-beta`:
+Recommended package:
 
 ```text
-Blender360Photolab-v0.35.0-beta-extension.zip
+360PhotoLab-v0.36.0-beta-extension.zip
+├── __init__.py
+└── blender_manifest.toml
 ```
 
-The ZIP should be tested before publication.
+The `__init__.py` file contains the add-on code.
 
 ---
+
+## Registration rules
+
+For Blender Extensions submission, keep registration clean:
+
+```python
+def register():
+    for cls in classes:
+        bpy.utils.register_class(cls)
+    register_props()
+
+
+def unregister():
+    unregister_props()
+    for cls in reversed(classes):
+        bpy.utils.unregister_class(cls)
+```
+
+Do not run legacy cleanup helpers during `register()`.
+
+In particular, do not include development-only startup cleanup such as:
+
+```python
+unregister_old_classes_and_props()
+cleanup_old_visual_artifacts()
+```
+
+Those helpers are useful while repeatedly reloading scripts from Blender's Scripting workspace, but they are not appropriate for a first public extension-platform release.
+
+---
+
+## Release assets
+
+For `v0.36.0-beta`, attach:
+
+```text
+360PhotoLab-v0.36.0-beta-extension.zip
+```
+
+Do not tell users to install GitHub's automatically generated Source code ZIP.
