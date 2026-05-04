@@ -1,28 +1,29 @@
-# Contributing to Blender360Photolab
+# Contributing to 360 PhotoLab
 
-Thank you for your interest in **Blender360Photolab**.
+Thank you for your interest in **360 PhotoLab**.
 
-Blender360Photolab is a Blender add-on for reframing equirectangular 360° photos, generating cylindrical previews and exporting rectilinear views.
+360 PhotoLab is an add-on for Blender focused on reframing equirectangular 360° still photos, generating RET/CIL/CLV previews and exporting photographic images for editing, sharing or print-oriented workflows.
 
 Contributions are welcome, especially in the following areas:
 
 - bug reports;
-- compatibility testing;
+- Blender compatibility testing;
 - documentation improvements;
 - user interface improvements;
-- new projection or preview modes;
+- projection or preview workflow improvements;
 - export workflow improvements;
 - example files and screenshots.
 
 ---
 
-## How to Report a Bug
+## How to report a bug
 
 Please open a GitHub Issue and include:
 
 - Blender version;
 - operating system;
-- Blender360Photolab version;
+- 360 PhotoLab version;
+- whether you installed the release asset ZIP or another file;
 - steps to reproduce the issue;
 - expected behavior;
 - actual behavior;
@@ -33,7 +34,7 @@ A good bug report should make it possible to reproduce the problem.
 
 ---
 
-## How to Suggest a Feature
+## How to suggest a feature
 
 Please open a GitHub Issue and describe:
 
@@ -52,19 +53,20 @@ Examples:
 
 ---
 
-## Pull Requests
+## Pull requests
 
 Before opening a pull request:
 
 1. Test the add-on in Blender.
-2. Make sure the add-on can still be enabled and disabled cleanly.
+2. Make sure the add-on can be enabled and disabled cleanly.
 3. Avoid hardcoded local file paths.
 4. Avoid adding unnecessary external dependencies.
 5. Keep changes focused and explain the reason for the change.
+6. Do not reintroduce development-only startup cleanup behavior in `register()`.
 
 ---
 
-## Coding Guidelines
+## Coding guidelines
 
 - Keep the user workflow clear and predictable.
 - Prefer explicit names for operators, panels and properties.

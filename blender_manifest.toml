@@ -1,0 +1,16 @@
+schema_version = "1.0.0"
+
+id = "photo360_lab"
+version = "0.36.0"
+name = "360 PhotoLab"
+tagline = "Reframe equirectangular 360 photos with RET CIL and CLV previews"
+maintainer = "Mattia Fiorini <https://github.com/mattcalavera>"
+type = "add-on"
+
+website = "https://github.com/mattcalavera/360PhotoLab"
+tags = ["Camera", "Import-Export"]
+blender_version_min = "4.2.0"
+license = ["SPDX:GPL-3.0-or-later"]
+
+[permissions]
+files = "Load local 360 images and LUT files and export images"

@@ -1,14 +1,14 @@
 # Security Policy
 
-## Supported Versions
+## Supported versions
 
-Blender360Photolab is currently in beta.
+360 PhotoLab is currently in beta.
 
 Security-related reports should refer to the latest public release unless the issue affects a specific older version.
 
 ---
 
-## Reporting a Security Issue
+## Reporting a security issue
 
 If you believe you have found a security issue, please do not publish exploit details publicly before maintainers have had time to evaluate the report.
 
